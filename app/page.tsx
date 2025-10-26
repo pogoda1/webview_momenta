@@ -8,12 +8,16 @@ bridge.send('VKWebAppInit');
 
 export default function Home() {
   useEffect(() => {
-    if (typeof window !== "undefined" && window.Telegram?.WebApp) {
-      const tg = window.Telegram.WebApp;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (typeof window !== "undefined" && (window as any).Telegram?.WebApp) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const tg = (window as any).Telegram.WebApp;
       tg.expand();
       tg.ready();
+      console.log("Telegram WebApp user:", tg.initDataUnsafe?.user);
     }
   }, []);
+
   return (
     <div className="flex min-h-screen flex-col bg-zinc-50 dark:bg-black">
       <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
