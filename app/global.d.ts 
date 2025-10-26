@@ -1,0 +1,15 @@
+// global.d.ts
+export {};
+
+declare global {
+  interface Window {
+    Telegram?: {
+      WebApp: {
+        expand: () => void;
+        ready: () => void;
+        initDataUnsafe?: any;
+        // можно добавить другие методы и свойства WebApp, если нужно
+      };
+    };
+  }
+}
